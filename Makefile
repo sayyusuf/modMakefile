@@ -1,8 +1,9 @@
-MODULE_NAME =		# Module name
-NAME =			# Lib name without the 'lib' prefix and '.so' suffix.
-_SRC =			# Source files
-_INC =			# Header files
-EXTRAFLAGS=
+MODULE_NAME =			# Module name
+NAME =				# Lib name without the 'lib' prefix and '.so' suffix.
+_SRC =				# Source files
+_INC =				# Header files
+EXTRAFLAGS +=			# -Wall -Wextra -Werror
+EXLIBS +=			# -lm
 
 
 #DEP1 =			# Dependent module's name

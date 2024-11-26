@@ -1,4 +1,4 @@
-MMVERSION = 1.0.1
+MMVERSION = 1.0.2
 EXTRAFLAGS +=
 
 ifndef	CC
@@ -15,6 +15,10 @@ endif
 
 ifndef	DEPDIRS
 	DEPDIRS := ..
+endif
+
+ifndef	EXLIBS
+	EXLIBS :=
 endif
 
 SHELL = /usr/bin/bash
@@ -159,7 +163,7 @@ $(TESTDIR)/start_test.sh:
 	for src in "'$$TESTSRC'"\n\
 	do\n\
 		"'rm "$$src".*'" 2>/dev/null ;\n\
-		"'$$CC $$CFLAGS $$EXTRAFLAGS $$src -I ../ $$DEPSINC -Wl,--no-as-needed $$LIBPATH $$DEPSLIBSPATH -Wl,--as-needed -o $$src".out" 2>$$src".err"'"\n\
+		"'$$CC $$CFLAGS $$EXTRAFLAGS $$src -I ../ $$DEPSINC -Wl,--no-as-needed $$LIBPATH $$DEPSLIBSPATH -Wl,--as-needed $$EXLIBS -o $$src".out" 2>$$src".err"'"\n\
 		if [ "'$$?'" -ne 0 ]; then\n\
 			echo -e $R"'$$src'" Compile ERROR!$N\n\
 		else\n\
@@ -194,6 +198,7 @@ runtest:
 		CC="$(CC)"\
 		CFLAGS="$(CFLAGS)"\
 		EXTRAFLAGS="$(EXTRAFLAGS)"\
+		EXLIBS="$(EXLIBS)"\
 		DEPSINC="$(DEPSINC)"\
 		LIBPATH="$(LIBPATH)"\
 		DEPSLIBSPATH="$(DEPSLIBSPATH)"\
