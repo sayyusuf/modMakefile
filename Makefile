@@ -3,6 +3,7 @@ NAME =				# Lib name without the 'lib' prefix and '.so' suffix.
 _SRC =				# Source files
 _INC =				# Header files
 EXTRAFLAGS +=			# -Wall -Wextra -Werror
+DEBUGFLAGS +=			# -g
 EXLIBS +=			# -lm
 
 

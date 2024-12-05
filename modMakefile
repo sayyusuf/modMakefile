@@ -1,5 +1,6 @@
 MMVERSION = 1.0.3
 EXTRAFLAGS +=
+DEBUGFLAGS +=
 
 ifndef	CC
 CC := gcc
@@ -72,6 +73,12 @@ endif
 	echo -e $G$(MODULE_NAME)$N": Compiling: " $B$<$N
 	$(CC)  $(CFLAGS) $(DEPSINC) -fPIC -I./ -c $<  -o $@
 	echo -e $G$(MODULE_NAME)$N": Compiled : " $G$<$N
+
+debug:
+	@echo -e $Y"DEBUG MODE!"$N
+	$(eval EXTRAFLAGS+=$(DEBUGFLAGS))
+	@echo -e $Y"FLAGS: $(EXTRAFLAGS)"$N
+	make all EXTRAFLAGS="$(EXTRAFLAGS)"
 
 deps: $(DEPS) 
 
@@ -156,6 +163,12 @@ pwd:
 #//////////////////////////////// TEST SECTION \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 test_all: ready test
+
+debug_test:
+	@echo -e $Y"DEBUG MODE!"$N
+	$(eval EXTRAFLAGS+=$(DEBUGFLAGS))
+	@echo -e $Y"FLAGS: $(EXTRAFLAGS)"$N
+	make test EXTRAFLAGS="$(EXTRAFLAGS)"
 
 test: all $(TESTDIR)/start_test.sh  runtest
 
